@@ -1,0 +1,15 @@
+.admindiv {
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+  border: 3px solid rgb(104, 102, 102);
+  padding: 20px;
+  background-color: rgb(231, 245, 244);
+}
+
+@media only screen and (max-width: 600px) {
+  .admindiv {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}

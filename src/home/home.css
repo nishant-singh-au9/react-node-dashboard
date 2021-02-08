@@ -1,0 +1,17 @@
+.homediv {
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 3px solid black;
+  padding: 20px;
+  padding-top: 0px;
+  padding-bottom : 0px;
+}
+
+@media only screen and (max-width: 600px) {
+  .homediv {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+  }
+}
