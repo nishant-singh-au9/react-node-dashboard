@@ -1,8 +1,10 @@
 import React from "react";
 import "./home.css";
-const url = "http://localhost:9700/users";
-const delurl = "http://localhost:9700/deleteUser";
-const puturl = "http://localhost:9700/editUser";
+import $ from "jquery";
+const url = "https://react-node-dashboard-api.herokuapp.com/users";
+const delurl = "https://react-node-dashboard-api.herokuapp.com/deleteUser";
+const puturl = "https://react-node-dashboard-api.herokuapp.com/editUser";
+
 class Home extends React.Component {
   constructor() {
     super();
@@ -31,8 +33,6 @@ class Home extends React.Component {
       phone: this.state.phone
     };
 
-    console.log(data);
-
     fetch(puturl, {
       method: "PUT",
       body: JSON.stringify(data),
@@ -59,7 +59,7 @@ class Home extends React.Component {
   };
 
   editHandler = (id) => {
-    const usrdetail = `http://localhost:9700/user/${id}`;
+    const usrdetail = `https://react-node-dashboard-api.herokuapp.com/user/${id}`;
     fetch(usrdetail, { method: "GET" })
       .then((res) => res.json())
       .then((data) => {
@@ -107,7 +107,7 @@ class Home extends React.Component {
             <td>
               <button
                 type="button"
-                class="btn btn-warning"
+                className="btn btn-warning"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 onClick={this.editHandler.bind(this, item._id)}
@@ -157,7 +157,7 @@ class Home extends React.Component {
         <div
           className="modal fade"
           id="exampleModal"
-          tabindex="-1"
+          tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
@@ -185,7 +185,7 @@ class Home extends React.Component {
                     disabled
                   />
                   <div className="form-group">
-                    <label for="name">Name:</label>
+                    <label htmlFor="name">Name:</label>
                     <input
                       type="text"
                       className="form-control"
@@ -198,7 +198,7 @@ class Home extends React.Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label for="city">City:</label>
+                    <label htmlFor="city">City:</label>
                     <input
                       type="text"
                       className="form-control"
@@ -210,7 +210,7 @@ class Home extends React.Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label for="phone">Phone:</label>
+                    <label htmlFor="phone">Phone:</label>
                     <input
                       type="phone"
                       className="form-control"
@@ -222,7 +222,7 @@ class Home extends React.Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label for="email">Email:</label>
+                    <label htmlFor="email">Email:</label>
                     <input
                       type="email"
                       className="form-control"
@@ -234,7 +234,7 @@ class Home extends React.Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlfor="role">Role:</label>
+                    <label htmlFor="role">Role:</label>
                     <input
                       type="role"
                       className="form-control"
@@ -245,7 +245,7 @@ class Home extends React.Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label for="role">User Status:</label>
+                    <label htmlFor="role">User Status:</label>
                     <input
                       type="role"
                       className="form-control"
@@ -301,6 +301,12 @@ class Home extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+
+    try {
+      $("#myTable").DataTable();
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 export default Home;

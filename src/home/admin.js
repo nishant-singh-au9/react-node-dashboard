@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./admin.css";
-const posturl = "http://localhost:9700/adduser";
+const posturl = "https://react-node-dashboard-api.herokuapp.com/adduser";
 
 class Admin extends React.Component {
   constructor() {
