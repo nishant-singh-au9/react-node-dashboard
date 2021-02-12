@@ -1,6 +1,5 @@
 import React from "react";
 import "./home.css";
-import $ from "jquery";
 const url = "https://react-node-dashboard-api.herokuapp.com/users";
 const delurl = "https://react-node-dashboard-api.herokuapp.com/deleteUser";
 const puturl = "https://react-node-dashboard-api.herokuapp.com/editUser";
@@ -47,15 +46,19 @@ class Home extends React.Component {
       });
   };
 
-  deleteHandler = (id) => {
-    const topass = { _id: id };
-    fetch(delurl, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(topass)
-    });
+  deleteHandler = (id, role) => {
+    if (role === "Admin") {
+      alert("You cannot delete an Admin");
+    } else {
+      const topass = { _id: id };
+      fetch(delurl, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(topass)
+      });
+    }
   };
 
   editHandler = (id) => {
@@ -118,7 +121,7 @@ class Home extends React.Component {
                 type="button"
                 className="btn btn-danger"
                 id={item._id}
-                onClick={this.deleteHandler.bind(this, item._id)}
+                onClick={this.deleteHandler.bind(this, item._id, item.role)}
                 style={{ marginLeft: "10px" }}
               >
                 Delete
@@ -301,12 +304,6 @@ class Home extends React.Component {
       .catch((err) => {
         console.log(err);
       });
-
-    try {
-      $("#myTable").DataTable();
-    } catch (error) {
-      console.log(error);
-    }
   }
 }
 export default Home;
